@@ -8,11 +8,11 @@
  * @property {string} name
  */
 
- class Item{
-   constructor(name){
-     this.name = name;
-   }
- }
+class Item {
+  constructor(name) {
+    this.name = name;
+  }
+}
 
 /**
  * Class => Weapon(name, damage)
@@ -30,12 +30,12 @@
  * @property {number} damage
  */
 
- class Weapon extends Item{
-   constructor(name, damage){
-     super(name);
-     this.damage = damage;
-   }
- }
+class Weapon extends Item {
+  constructor(name, damage) {
+    super(name);
+    this.damage = damage;
+  }
+}
 
 /**
  * Weapon Extends Item Class
@@ -60,12 +60,12 @@
  * @property {number} energy
  */
 
- class Food extends Item{
-   constructor(name, energy){
-     super(name);
-     this.energy = energy
-   }
- }
+class Food extends Item {
+  constructor(name, energy) {
+    super(name);
+    this.energy = energy
+  }
+}
 
 /**
  * Food Extends Item Class
@@ -96,24 +96,46 @@
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
-class Player{
-  constructor(name, health, strength, speed){
+class Player {
+  constructor(name, health, strength, speed) {
     this.name = name;
     this.health = health;
     this.strength = strength;
     this.speed = speed;
     this.isAlive = true;
     this.equipped = false;
-    this._pack;
+    this._pack = [];
     this._maxHealth = health;
   }
-  getPack(){
-    return [this._pack]
+  getPack() {
+    return this._pack
   }
-  getMaxHealth(){
+  getMaxHealth() {
     return this._maxHealth;
   }
+  checkPack() {
+    console.log(this.getPack());
+  }
+  takeItem(item) {
+    if (this.getPack().length < 3) {
+      this.getPack().push(item);
+      console.log(this.name + " picks up " + item.name)
+    } else {
+      console.log("Item cannot be stored. Pack is full");
+    }
+  }
+  discardItem(item) {
+    let itemToBeRemoved = this.getPack().indexOf(item);
+    if (itemToBeRemoved === -1) {
+      console.log("Cannot be removed. Item not found");
+    } else {
+      this.getPack().splice(itemToBeRemoved, 1);
+      console.log(item.name + " was removed");
+      return true
+    }
+  }
 }
+
 /**
  * Player Class Method => checkPack()
  * -----------------------------
