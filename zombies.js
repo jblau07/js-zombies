@@ -180,11 +180,6 @@ class Player {
   }
 }
 
-
-
-
-
-
 /**
  * Player Class Method => checkPack()
  * -----------------------------
@@ -330,6 +325,15 @@ class Player {
  * @property {boolean} isAlive      Default value should be `true`.
  */
 
+class Zombie {
+  constructor(health, strength, speed) {
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this.isAlive = true;
+    this._maxHealth = health;
+  }
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -345,7 +349,11 @@ class Player {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+class FastZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+  }
+}
 
 /**
  * FastZombie Extends Zombie Class
@@ -368,7 +376,11 @@ class Player {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+class StrongZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+  }
+}
 
 /**
  * StrongZombie Extends Zombie Class
@@ -397,7 +409,11 @@ class Player {
  * RangedZombie Extends Zombie Class
  * -----------------------------
  */
-
+class RangedZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed)
+  }
+}
 
 
 /**
@@ -420,8 +436,11 @@ class Player {
  * ExplodingZombie Extends Zombie Class
  * -----------------------------
  */
-
-
+class ExplodingZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed)
+  }
+}
 
 
 /**
