@@ -134,7 +134,22 @@ class Player {
       return true
     }
   }
+  equip(itemToEquip) {
+    let itemInPack = this.getPack().indexOf(itemToEquip);
+    if (itemToEquip instanceof Weapon && itemInPack !== -1) {
+      if (this.equipped === false) {
+        this.equipped = itemToEquip;
+        this.discardItem(itemToEquip)
+      } else if (this.equipped !== false) {
+        this.getPack().splice(itemInPack, 1, this.equipped);
+        this.equipped = itemToEquip;
+      } else {
+        console.log("Item is not a weapon")
+      }
+    }
+  }
 }
+
 
 /**
  * Player Class Method => checkPack()
