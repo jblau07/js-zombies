@@ -148,7 +148,24 @@ class Player {
       }
     }
   }
+  eat(itemToEat) {
+    let foodInPack = this.getPack().indexOf(itemToEat);
+    console.log("item to eat", itemToEat);
+    if (itemToEat instanceof Food && foodInPack !== -1) {
+      if ((itemToEat.energy + this.health) > this.getMaxHealth()) {
+        this.health = this.getMaxHealth();
+        this.discardItem(itemToEat)
+
+      } else if ((itemToEat.energy + this.health) <= this.getMaxHealth())
+        itemToEat.energy += this.health;
+      this.discardItem(itemToEat)
+
+    } else {
+      console.log("Don't eat that!")
+    }
+  }
 }
+
 
 
 /**
