@@ -145,7 +145,6 @@ Player.prototype.equip = function (itemToEquip) {
     } else if (this.equipped !== false) {
       this.getPack().splice(itemInPack, 1, this.equipped);
       this.equipped = itemToEquip;
-      this.discardItem(itemToEquip)
     } else {
       console.log("Item not found / Item is not a weapon")
     }
@@ -154,12 +153,11 @@ Player.prototype.equip = function (itemToEquip) {
 Player.prototype.eat = function (itemToEat) {
   let foodInPack = this.getPack().indexOf(itemToEat);
   if (itemToEat instanceof Food && foodInPack !== -1) {
+    this.discardItem(itemToEat);
     if ((itemToEat.energy + this.health) > this.getMaxHealth()) {
       this.health = this.getMaxHealth();
-      this.discardItem(itemToEat)
     } else if ((itemToEat.energy + this.health) <= this.getMaxHealth()) {
       this.health += itemToEat.energy;
-      this.discardItem(itemToEat)
     } else {
       console.log("Don't eat that!")
     }
@@ -333,7 +331,7 @@ function Zombie(health, strength, speed) {
   this.strength = strength;
   this.speed = speed;
   this.isAlive = true;
-  this._maxHealth = health
+  _maxHealth = health
 }
 
 
@@ -356,6 +354,7 @@ function FastZombie(health, strength, speed) {
 }
 
 FastZombie.prototype = Object.create(Zombie.prototype);
+FastZombie.prototype.constructor = FastZombie;
 
 /**
  * FastZombie Extends Zombie Class
@@ -389,6 +388,7 @@ function StrongZombie(health, strength, speed) {
  */
 
 StrongZombie.prototype = Object.create(Zombie.prototype);
+StrongZombie.prototype.constructor = StrongZombie;
 
 /**
  * Class => RangedZombie(health, strength, speed)
@@ -414,6 +414,7 @@ RangedZombie = function (health, strength, speed) {
  */
 
 RangedZombie.prototype = Object.create(Zombie.prototype);
+RangedZombie.prototype.constructor = RangedZombie;
 
 /**
  * Class => ExplodingZombie(health, strength, speed)
@@ -439,6 +440,7 @@ function ExplodingZombie(health, strength, speed) {
  */
 
 ExplodingZombie.prototype = Object.create(Zombie.prototype);
+ExplodingZombie.prototype.constructor = ExplodingZombie;
 
 
 /**
