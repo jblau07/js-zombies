@@ -144,7 +144,7 @@ class Player {
         this.getPack().splice(itemInPack, 1, this.equipped);
         this.equipped = itemToEquip;
       } else {
-        console.log("Item is not a weapon")
+        console.log("Item is not a weapon / Item not found")
       }
     }
   }
